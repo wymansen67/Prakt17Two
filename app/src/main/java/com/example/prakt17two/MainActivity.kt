@@ -13,13 +13,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var countTemp: TextView
     lateinit var count_start: SharedPreferences
     var count:Int = 0
-    public var bublik = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
-        ConstraintLayout 
+        bindingClass.cl.setBackgroundColor(getColor(R.color.red))
         count_start = getPreferences(MODE_PRIVATE)
         count++
         countTemp = findViewById<TextView>(R.id.counter)
@@ -29,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         count_start = getPreferences(MODE_PRIVATE)
         countTemp.setText(count_start.getString("count", ""))
+        count++
+        if(count % 2 == 0) {
+            bindingClass.cl.setBackgroundColor(getColor(R.color.green))
+        }
+        else {
+            bindingClass.cl.setBackgroundColor(getColor(R.color.blue))
+        }
 
     }
 
